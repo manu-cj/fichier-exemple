@@ -30,7 +30,7 @@ function getRandomName(string $regularName) {
 /**
  * Réception sans sécurité
  */
-
+/*
 if (isset($_FILES["fichierUtilisateur"])) {
     if ($_FILES['fichierUtilisateur']['error']===0) {
         $tmp_name = $_FILES['fichierUtilisateur']["tmp_name"];
@@ -47,7 +47,7 @@ if (isset($_FILES["fichierUtilisateur"])) {
         echo 'error';
     }
 }
-
+*/
 /**
  * Réception avec sécurité
  */
@@ -59,8 +59,10 @@ if (isset($_FILES["fichierUtilisateur"])) {
             $tmp_name = $_FILES['fichierUtilisateur']["tmp_name"];
 
             $name = getRandomName($_FILES['fichierUtilisateur']["name"]);
-
-            move_uploaded_file($tmp_name, $name);
+            if (!is_dir('uploads')) {
+                mkdir('uploads', '0755');
+            }
+            move_uploaded_file($tmp_name, 'uploads/'. $name);
 
             echo '<p class="success">upload réussi !</p><br>';
             echo $name . '<br>';
