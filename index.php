@@ -48,7 +48,7 @@ if (isset($_FILES["fichierUtilisateur"])) {
             }
         }
         else {
-            echo 'error';
+            echo '<p>Une erreur s\'est produite lors de l\'upload du fichier!</p>' ;
         }
     }
    else {
