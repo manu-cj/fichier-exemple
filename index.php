@@ -52,7 +52,8 @@ if (isset($_FILES["fichierUtilisateur"])) {
         }
     }
    else {
-       echo 'le type du fichier n\'est pas autorisé';
+       echo '<br><p>le type du fichier n\'est pas autorisé !</p><style>p { color: red;
+}</style>';
    }
 }
 
