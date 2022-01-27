@@ -1,4 +1,14 @@
 <?php
+function getRandomName(string $regularName) {
+    $infos = pathinfo($regularName);
+    try {
+        $bytes = random_bytes(15);
+    }
+    catch (Exception $e) {
+        $bytes = openssl_random_pseudo_bytes(15);
+    }
+    return bin2hex($bytes) . '.' . $infos['extension'];
+}
 ?>
 
 
@@ -21,7 +31,7 @@ if (isset($_FILES["fichierUtilisateur"])) {
         $name = $_FILES['fichierUtilisateur']["name"];
 
         move_uploaded_file($tmp_name, $name);
-        echo 'upload réussi !';
+        echo '<p class="success">upload réussi ! </p><br><br>';
         foreach ($_FILES['fichierUtilisateur'] as $key => $value) {
             echo "$key => $value <br>";
         }
@@ -41,12 +51,14 @@ if (isset($_FILES["fichierUtilisateur"])) {
         if ($_FILES['fichierUtilisateur']['error']===0) {
             $tmp_name = $_FILES['fichierUtilisateur']["tmp_name"];
 
-            $name = $_FILES['fichierUtilisateur']["name"];
+            $name = getRandomName($_FILES['fichierUtilisateur']["name"]);
 
             move_uploaded_file($tmp_name, $name);
-            echo 'upload réussi !';
+
+            echo '<p class="success">upload réussi !</p><br>';
+            echo $name . '<br>';
             foreach ($_FILES['fichierUtilisateur'] as $key => $value) {
-                echo "$key => $value <br>";
+                echo "$key => $value <br><br>";
             }
         }
         else {
@@ -54,8 +66,10 @@ if (isset($_FILES["fichierUtilisateur"])) {
         }
     }
    else {
-       echo '<br><p>le type du fichier n\'est pas autorisé !</p><style>p { color: red;
+       echo '<br><p>le type du fichier n\'est pas autorisé !</p><style> p { color: red;
+}
+.success {
+color: limegreen;
 }</style>';
    }
 }
-
