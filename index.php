@@ -1,4 +1,11 @@
 <?php
+/**
+ * Génère un nom de fichier aléatoire (peut être utile en cas d'utilisateur malveillant
+ * pour qu'il ne retrouve pas son fichier upload)
+ * @param string $regularName
+ * @return string
+ */
+
 function getRandomName(string $regularName) {
     $infos = pathinfo($regularName);
     try {
