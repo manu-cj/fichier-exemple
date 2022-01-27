@@ -21,6 +21,7 @@ if (isset($_FILES["fichierUtilisateur"])) {
         $name = $_FILES['fichierUtilisateur']["name"];
 
         move_uploaded_file($tmp_name, $name);
+        echo 'upload réussi !';
         foreach ($_FILES['fichierUtilisateur'] as $key => $value) {
             echo "$key => $value <br>";
         }
@@ -43,6 +44,7 @@ if (isset($_FILES["fichierUtilisateur"])) {
             $name = $_FILES['fichierUtilisateur']["name"];
 
             move_uploaded_file($tmp_name, $name);
+            echo 'upload réussi !';
             foreach ($_FILES['fichierUtilisateur'] as $key => $value) {
                 echo "$key => $value <br>";
             }
